@@ -2,13 +2,13 @@ import { toast } from "react-toastify"
 
 const toastConifigtoast:any= {
     position: "top-right",
-    autoClose: 3000,
+    autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    progress: true,
-    theme: "light",
+    progress: undefined,
+    theme: "light"
     }
 export const successToast = (message:string) =>{
     toast.success(message,toastConifigtoast)

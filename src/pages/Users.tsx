@@ -5,9 +5,8 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 import CommonModal from "../components/modal/modal";
-import {toast} from "react-toastify"
 import { errorToast, successToast } from "../config/toastConfig";
-
+import RenderCellData from '../services/RenderCell'
 const Users = () => {
   const [users, setUsers] = useState<any>([]);
   const [user, setUser] = useState<any>({});
@@ -25,26 +24,7 @@ const Users = () => {
       return err;
     }
   };
-  const renderCellDatata = (item: any) => {
-    return (
-      <>
-        <table className="table table-bordered table-dark">
-          {Object.keys(item).map((keys: any, index: number) => {
-            return (
-              <tr key={index}>
-                <td>{keys}</td>
-                <td>
-                  {typeof item[keys] === "object"
-                    ? renderCellDatata(item[keys])
-                    : item[keys]}
-                </td>
-              </tr>
-            );
-          })}
-        </table>
-      </>
-    );
-  };
+
   const deleteHandler = (id: number) => {
     const result = users.filter((item: any) => item.id !== id);
     setUsers(result);
@@ -103,7 +83,7 @@ const Users = () => {
                   return (
                     <td key={index}>
                       {typeof item[head] === "object"
-                        ? renderCellDatata(item[head])
+                        ? RenderCellData(item[head])
                         : item[head]}
                     </td>
                   );
