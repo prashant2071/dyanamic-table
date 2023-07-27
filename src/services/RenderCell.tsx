@@ -1,9 +1,8 @@
-import React from 'react'
 
 const RenderCellDatata = (item: any) => {
   return (
     <>
-            <table className="table table-bordered table-dark">
+            <table className="table table-bordered">
           {Object.keys(item).map((keys: any, index: number) => {
             return (
               <tr key={index}>

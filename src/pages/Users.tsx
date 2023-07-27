@@ -10,9 +10,29 @@ import RenderCellData from '../services/RenderCell'
 const Users = () => {
   const [users, setUsers] = useState<any>([]);
   const [user, setUser] = useState<any>({});
-  const [headers, setHeaders] = useState<any>([]);
+  const [headers, setHeaders] = useState<Array<string>>([]);
   const [showModal, setShowModal] = useState(false);
 
+  interface AddressInterface{
+    city:string,
+    postalCode:number,
+    zipCode:number
+  }
+  interface UserInterface{
+    name:string,
+    age:number,
+    address:AddressInterface
+  }
+  const str:string="abc";
+  const num:UserInterface = {
+    name:"prashant",
+    age:12,
+    address:{
+      city:"kathmandu",
+      postalCode:4460,
+      zipCode:129
+    }
+  }
   const getAllUsers = async () => {
     try {
       const response = await axios.get(`${SERVER_URL}/users`);
@@ -50,7 +70,8 @@ const Users = () => {
 
   const submitEditHandler = () => {
     // const Index = users.findIndex((item:any)=>item.id==user.id);
-    // setUsers((prevState:any) =>prevState[Index]=user);
+    // setUsers(users[Index]=user);
+    // console.log("the users is",users)
     const result = users.map((item:any)=>(item.id===user.id)?user:item);
     setUsers(result);
     // console.log("the users is ",users)
@@ -66,7 +87,7 @@ const Users = () => {
   return (
     <div className="container">
       <h1>table</h1>
-      <table className="table table-bordered table-dark">
+      <table className="table table-bordered">
         <thead>
           <tr>
             {headers.map((item: string, index: number) => {
