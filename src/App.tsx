@@ -3,7 +3,7 @@ import Users from './pages/Users'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import LecturePage from './pages/LecturePage';
+import LecturePage from './pages/lecture/LecturePage';
 import Signin from './pages/SIgnin';
 import Signup from './pages/Signup';
 function App() {

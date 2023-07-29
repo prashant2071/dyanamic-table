@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap"
 import { axiosPost } from "../services/axios.services";
-import { loginInterface } from "../interface/Interface";
+import { loginInterface } from "../interface/login.Interface";
 import { errorToast, successToast } from "../config/toastConfig";
 import { useNavigate } from "react-router-dom";
 

@@ -1,0 +1,13 @@
+.lecture-content{
+    width: 30%;
+}
+.video-container{
+    height: 240px;
+    width: 100%;
+    overflow: hidden;
+}
+.video-container video{
+    height: 240px;
+    width: 100%;
+    /* object-fit: cover; */
+}
