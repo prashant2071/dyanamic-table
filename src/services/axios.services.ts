@@ -3,10 +3,26 @@ import { LOCAL_SERVER_URL } from "../config/envConfig";
 
 const token = localStorage.getItem("token")
 
-export const axiosPost =async (url:string,data:any) =>{
+export const Post =async (url:string,data:any) =>{
     try{
 
         const response = await axios.post(`${LOCAL_SERVER_URL}/${url}`,data);
+        return response.data;
+
+    }
+    catch(err:any){
+        return err.response.data
+    }
+
+}
+export const axiosPost =async (url:string,data:any) =>{
+    try{
+
+        const response = await axios.post(`${LOCAL_SERVER_URL}/${url}`,data,{
+            headers:{
+                Authorization:`Bearer ${token}`
+            }
+        });
         return response.data;
 
     }

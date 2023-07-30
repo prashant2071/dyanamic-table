@@ -9,8 +9,12 @@ import {
 import { ErrorMessage, Formik } from "formik";
 import { Form } from "react-bootstrap";
 import { mixed, number, object, string } from "yup";
+import { axiosPost } from "../../services/axios.services";
+import { successToast } from "../../config/toastConfig";
+import { useNavigate } from "react-router-dom";
 
 const LectureForm = () => {
+  const navigate = useNavigate();
   const initialValues = {
     title: "",
     content: "",
@@ -28,9 +32,20 @@ const LectureForm = () => {
     duration: number().required("content is required*"),
     file: mixed().required(),
   });
-  const handleSubmit = (values: any) => {
-    console.log("the values ", values);
-    console.log("hello");
+  const handleSubmit =async (values: any) => {
+    console.log("the values is ",values)
+      const formData = new FormData();
+      formData.append("title",values.title);
+      formData.append("content",values.content);
+      formData.append("duration",values.duration);
+      formData.append("video",values.file);
+      
+      const response = await axiosPost('lectures',formData);
+      if(response.status){
+        successToast(response.message);
+        navigate('/lecture')
+      }
+
   };
   return (
     <div className="container mb-2 mx-auto w-100">

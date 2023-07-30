@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap"
-import { axiosPost } from "../services/axios.services";
+import { Post } from "../services/axios.services";
 import { loginInterface } from "../interface/login.Interface";
 import { errorToast, successToast } from "../config/toastConfig";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ const Signin = () => {
       password
     }
     console.log("the data is",data);
-    const response =await axiosPost('users/login',data);
+    const response =await Post('users/login',data);
     if(response && response.status){
       successToast(response.message)
       localStorage.setItem("isLoggedIn","true");
