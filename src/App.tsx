@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import LecturePage from './pages/lecture/LecturePage';
 import Signin from './pages/SIgnin';
 import Signup from './pages/Signup';
+import LectureForm from './components/form/LectureForm';
 function App() {
 
   return (
@@ -18,6 +19,8 @@ function App() {
       <Route path='/users' element={<Users/>}></Route>
 
       <Route path='/lectures' element={<LecturePage/>}></Route>
+      <Route path='/lectures/add' element={<LectureForm/>}></Route>
+
     </Routes>
     </BrowserRouter>
     <ToastContainer/>
