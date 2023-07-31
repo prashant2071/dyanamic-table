@@ -12,8 +12,10 @@ import { mixed, number, object, string } from "yup";
 import { axiosPost } from "../../services/axios.services";
 import { successToast } from "../../config/toastConfig";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const LectureForm = () => {
+  const [isDisabled,setIsDisabled] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
     title: "",
@@ -33,6 +35,7 @@ const LectureForm = () => {
     file: mixed().required(),
   });
   const handleSubmit =async (values: any) => {
+    setIsDisabled(true);
     console.log("the values is ",values)
       const formData = new FormData();
       formData.append("title",values.title);
@@ -43,7 +46,8 @@ const LectureForm = () => {
       const response = await axiosPost('lectures',formData);
       if(response.status){
         successToast(response.message);
-        navigate('/lecture')
+        setIsDisabled(false);
+        navigate('/lectures')
       }
 
   };
@@ -58,7 +62,6 @@ const LectureForm = () => {
         {({
           values,
           errors,
-          touched,
           handleChange,
           handleSubmit,
           setFieldValue,
@@ -119,8 +122,8 @@ const LectureForm = () => {
               </FormControl>
               <ErrorMessage name="file" className="text-center" />
             </div>
-            <Button variant="outlined" type="submit">
-              Submit
+            <Button disabled={isDisabled} variant="outlined" type="submit">
+              {!isDisabled?"Submit":"Submitting ..."}
             </Button>
           </Form>
         )}

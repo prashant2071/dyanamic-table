@@ -9,17 +9,26 @@ import { lectureInterface } from "../../interface/lectures.interface";
 import IconButton from "@mui/material/IconButton";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import "./lecture.css";
+
+import './../../components/loader/Loader'
 import { successToast } from "../../config/toastConfig";
 import { useNavigate } from "react-router-dom";
+import Loader from "./../../components/loader/Loader";
 
 const LecturePage = () => {
   const [lectures, setLectures] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
   const getLecture = async () => {
+    setLoading(true);
     const response = await axiosGet("lectures");
     console.log("the response is ", response);
     if (response.status) {
       setLectures(response.data);
+      setLoading(false);
+
     }
   };
 
@@ -42,9 +51,11 @@ const LecturePage = () => {
     getLecture();
   }, []);
   return (
-    <div className="container mx-auto px-4 py-2">
-      <h2 className="">Lectures</h2>
+     <div className="container mx-auto px-4 py-2">
+      {loading?<Loader/>:<>
+      <h2 className="text-center">Lectures</h2>
       <Button variant="contained" onClick={(e:any)=>addLecture(e)}>Add Lectures</Button>
+
       <div className="d-flex flex-wrap gap-4">
         {lectures.map((item: lectureInterface) => {
           return (
@@ -81,6 +92,8 @@ const LecturePage = () => {
           );
         })}
       </div>
+        </>}
+      
     </div>
   );
 };
