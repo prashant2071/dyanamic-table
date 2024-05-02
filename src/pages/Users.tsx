@@ -15,11 +15,11 @@ const Users = () => {
 
   const getAllUsers = async () => {
     try {
-      const response = await axios.get(`${SERVER_URL}/vv`);
+      const response = await axios.get(`${SERVER_URL}/users`);
       setUsers(response.data.users);
       successToast("data fetched successfully!");
       setHeaders(Object.keys(response.data.users[0]));
-      console.log("hello dear",Object.keys(response.data.users[0]));
+      console.log("headers array",Object.keys(response.data.users[0]));
     } catch (err) {
       errorToast("failed to fetched data");
       return err;

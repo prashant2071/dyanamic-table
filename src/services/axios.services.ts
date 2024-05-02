@@ -6,7 +6,7 @@ const token = localStorage.getItem("token")
 export const Post =async (url:string,data:any) =>{
     try{
 
-        const response = await axios.patch(`${LOCAL_SERVER_URL}/${url}`,data);
+        const response = await axios.post(`${LOCAL_SERVER_URL}/${url}`,data);
         return response.data;
 
     }

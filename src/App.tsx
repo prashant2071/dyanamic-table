@@ -19,6 +19,7 @@ function App() {
       <Route path='/signup' element={<Signup/>}></Route>
       <Route path='/users' element={<Users/>}></Route>
       <Route path="/" element={<SecureRoute/>}>
+      <Route path='/dynamictable' element={<Users/>}></Route>
       <Route path='/lectures' element={<LecturePage/>}></Route>
       <Route path='/lectures/add' element={<LectureForm/>}></Route>
       <Route path='/lectures/:lectureId' element={<EditLecturePage/>}></Route>

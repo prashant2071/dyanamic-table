@@ -15,7 +15,7 @@ const Signin = () => {
       password
     }
     console.log("the data is",data);
-    const response =await Post('users/login',data);
+    const response:any =await Post('users/login',data);
     if(response && response.status){
       successToast(response.message)
       localStorage.setItem("isLoggedIn","true");
