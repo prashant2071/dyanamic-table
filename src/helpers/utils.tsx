@@ -1,4 +1,5 @@
 export const getCurrentYear = () =>{
+    let date = new Date()
     return new Date().getFullYear();
 } 
 
