@@ -1,0 +1,8 @@
+.videoImg{
+    position:relative
+}
+.videoDel{
+    position: absolute;
+    top:0px;
+    left: 190px;
+}

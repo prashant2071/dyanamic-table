@@ -13,32 +13,13 @@ const Users = () => {
   const [headers, setHeaders] = useState<Array<string>>([]);
   const [showModal, setShowModal] = useState(false);
 
-  interface AddressInterface{
-    city:string,
-    postalCode:number,
-    zipCode:number
-  }
-  interface UserInterface{
-    name:string,
-    age:number,
-    address:AddressInterface
-  }
-  const str:string="abc";
-  const num:UserInterface = {
-    name:"prashant",
-    age:12,
-    address:{
-      city:"kathmandu",
-      postalCode:4460,
-      zipCode:129
-    }
-  }
   const getAllUsers = async () => {
     try {
-      const response = await axios.get(`${SERVER_URL}/users`);
+      const response = await axios.get(`${SERVER_URL}/vv`);
       setUsers(response.data.users);
       successToast("data fetched successfully!");
       setHeaders(Object.keys(response.data.users[0]));
+      console.log("hello dear",Object.keys(response.data.users[0]));
     } catch (err) {
       errorToast("failed to fetched data");
       return err;
