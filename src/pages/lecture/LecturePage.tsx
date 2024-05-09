@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { axiosDelete, axiosGet } from "../../services/axios.services";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -14,6 +14,7 @@ import "./../../components/loader/Loader";
 import { successToast } from "../../config/toastConfig";
 import { useNavigate } from "react-router-dom";
 import Loader from "./../../components/loader/Loader";
+import GlobalContext from "../../context/GlobalContext";
 
 const LecturePage = () => {
   const [lectures, setLectures] = useState([]);
@@ -21,11 +22,12 @@ const LecturePage = () => {
   const [toggle, setToggle] = useState(false);
   const [headers, setHeaders] = useState<Array<string>>([]);
   const navigate = useNavigate();
-
+  const isLoggedInContext = useContext(GlobalContext);
+  console.log(isLoggedInContext)
   const getLecture = async () => {
     setLoading(true);
     const response = await axiosGet("lectures");
-    console.log("the response is ", response);
+    console.log("the lecture response is ", response);
     if (response.status) {
       let head = Object.keys(response.data[0]);
       setHeaders(head);

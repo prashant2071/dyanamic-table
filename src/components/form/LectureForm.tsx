@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const LectureForm = () => {
+  console.log("lecture form")
   const [isDisabled,setIsDisabled] = useState(false);
   const navigate = useNavigate();
   const initialValues = {

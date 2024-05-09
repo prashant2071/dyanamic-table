@@ -1,7 +1,10 @@
 import axios from "axios"
 import { LOCAL_SERVER_URL } from "../config/envConfig";
 
-const token = localStorage.getItem("token")
+const localData :any = localStorage.getItem("isLoggedInObj")
+
+const {token} :any = JSON.parse(localData);
+
 
 export const Post =async (url:string,data:any) =>{
     try{
@@ -47,13 +50,14 @@ export const axiosPatch =async (url:string,data:any) =>{
     }
 
 }
-export const axiosGet =async (url:string) =>{
+export const  axiosGet =async (url:string) =>{
     try{
         const response = await axios.get(`${LOCAL_SERVER_URL}/${url}`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }
         });
+        console.log(response)
         return response.data;
 
     }

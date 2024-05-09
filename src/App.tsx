@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,6 +10,7 @@ import Signup from "./pages/Signup";
 import LectureForm from "./components/form/LectureForm";
 import EditLecturePage from "./pages/lecture/EditLecturePage";
 import SecureRoute from "./route/SecureRoute";
+import NotFound from "./pages/NotFound";
 function App() {
 
   return (
@@ -21,14 +23,15 @@ function App() {
           <Route path="/" element={<SecureRoute />}>
             <Route path="/dynamictable" element={<Users />}/>
             {/* nested routing */}
-            <Route path="lectures" element={<LecturePage />}>
-              <Route path="add" element={<LectureForm />}/>
+            <Route path="/lectures" element={<LecturePage />}>            </Route>
+
+              <Route path="/lectures/add" element={<LectureForm />}/>
               <Route
-                path=":lectureId"
+                path="/lectures/:lectureId"
                 element={<EditLecturePage />}
               />
             </Route>
-          </Route>
+          <Route path="*" element={<NotFound/>}></Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer />

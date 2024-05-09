@@ -1,13 +1,17 @@
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap"
 import { Post } from "../services/axios.services";
 import { loginInterface } from "../interface/login.Interface";
 import { errorToast, successToast } from "../config/toastConfig";
 import { useNavigate } from "react-router-dom";
+import GlobalContext from "../context/GlobalContext";
 
 const Signin = () => {
   const [email,setEmail]= useState<string>("");
   const [password,setPassword]= useState<string>("");
+  const isLoggedInContext:any = useContext(GlobalContext);
+  console.log(isLoggedInContext)
  const navigate = useNavigate();
   const handleSubmit =async (e:any) =>{
     let data :loginInterface={
@@ -18,8 +22,9 @@ const Signin = () => {
     const response:any =await Post('users/login',data);
     if(response && response.status){
       successToast(response.message)
-      localStorage.setItem("isLoggedIn","true");
-      localStorage.setItem("token",response.data.jwt)
+      // localStorage.setItem("isLoggedIn","true");
+      // localStorage.setItem("token",response.data.jwt)
+      isLoggedInContext.setIsLoggedIn(response.data.jwt)
       navigate('/lectures')
     }
     else{
